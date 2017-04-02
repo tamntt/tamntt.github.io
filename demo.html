@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap -->
+<link href="css/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<title> Draw SVG </title>
+
+<!-- Script -->
+
+<script src="http://svg.dabbles.info/velocity.js"></script>
+<script src="d3js/d3.v3.min.js"></script>
+<script src="script/jquery-1.9.1.js"></script>
+<script src="script/dagre-d3.js"></script>
+<script src="script/common.js"></script>
+<script src="script/test.js"></script>
+<script src="jquery-ui/external/jquery/jquery.js"></script>
+<script src="jquery-ui/jquery-ui.js"></script>
+<script src="script/jschannel.js"></script>
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link href="css/jquery-ui.css" rel="stylesheet" type="text/css" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link href="css/custom.css" rel="stylesheet" type="text/css" />
+<link href="css/jquery-ui.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+    <iframe width="95%" height="570" id="drawsvg" src="http://www.draw-svg.appspot.com/drawsvg.html#jsChannel:"></iframe>
+    <div><button id="getbtn" class="btn btn-primary btn-sm"  onclick="getSVG()" style="margin-left: 20px" >Get Picture </button></div>
+    
+    <div>
+        <svg id ="displayTextSvg" width="1100" height="50">
+            <text x="15" y="10" fill="black" id="diplayStateText" ></text>
+        </svg>
+    </div>
+    <div class="control" style="display: none; bottom:50px;" >
+        <div style="float:left; margin-left:10px;" >
+            <label style="float: left" >Duration</label>
+            <br>
+            <div id="slider" style="float: left; width: 350px ;margin-left:0px;"></div>
+            <br>
+            <p style="float:left" > Value: <span id="slider-value"></span></p>
+            <br><br>
+            <input type="button" class="run btn btn-default" onclick="draw()"  value="Run " style="margin-left:0px;" />
+            <input type="button" class="run btn btn-default" onclick="drawStep()" value="Run step" style="margin-left:2px" />
+            <input type="button" class="reset btn btn-default " onclick="reset()" value="Reset" style="margin-left:2px" />
+            <input type="button" class="reset btn btn-default " onclick="getPatterns()" value="Get Patterns" style="margin-left:2px" />
+            
+            <br><br><br>
+        </div>
+        <div style="float:left; margin-left:25px">
+          <label for="inputGraph">Sequence of states</label>
+          <input class="btn btn-default" type="file" id="fileForUpload" onclick="loadFile();" >
+              <div id="progress_bar" class="">
+                  <div class="percent progress-bar progress-bar-info progress-bar-striped">0%</div>
+              </div>
+        </div>
+    </div>
+    <textarea id="input" rows="10" cols="100" style="display: block; margin-left:5px ; font-size:12px;" >chan1,chan2:==
+    </textarea>
+    
+    <div id="svgPicture"></div>
+    
+    <div id="statePatterns" style= "margin-top: 155px" >
+    </div>
+    
+</body>
+
+
+
+<!-- Script -->
+
+<script src="script/drawsvg.js"></script>
+
+<script src="script/speed.js"></script>
+<script>
+
+// global variables
+var svg; var allKeys = [];
+var svgIDs = [];
+var texDisplays = [] ;
+var allRules = [];
+var allData = {};
+var contents;
+var elementDisplayState ;
+var stepIndex = 0;
+var lengthData = 0;
+var svgPicture = "";
+var svgSPIndex = 0;
+
+
+var bit1, bit2, chan1, chan2, list, packet, time, speed, wait;
+var index_chan1, index_chan2;
+index_chan1 = index_chan2 = [];
+var pair_index = 0;
+var receiver_index = 0;
+var width_rect = 60;
+var height_rect = 40;
+var color = "white";
+var color_txt = "back";
+var font_size = 14;
+var sendx1, sendx2, sendy1, sendy2, recx1, recx2, recy1, recy2;
+var chanx1, chanx2, chany1, chany2;
+
+// options for displaying texts: REV (horizontal + reverse), VER (vertical), VER-REV (vertical + reverse) .
+
+// readFile
+var reader;
+var progress = document.querySelector('.percent');
+document.getElementById('fileForUpload').addEventListener('change', handleFileSelect, false);
+
+</script>
+<script src="script/getPatterns.js"></script>
+</html>

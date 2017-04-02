@@ -1,0 +1,16 @@
+#body {
+    font-family: georgia, 'bitstream vera serif', serif;
+}
+
+.output {
+    font-family: 'lucida console', monaco, 'andale mono', 'bitstream vera sans mono', consolas, monospace;
+    font-size: 80%;
+    border : 1px dashed grey;
+    padding: 10px;
+    margin-bottom: 20px;
+    display: none;
+    
+}
+#drawsvg  {
+    margin-left: 20px;
+}

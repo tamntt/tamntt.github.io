@@ -1,0 +1,106 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="d3js/d3.v3.min.js"></script>
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	<script src="jquery-1.9.1.js"></script>
+	<script src="script/common.js"></script>
+	
+	
+	<script src="script/dagre-d3.js"></script>
+
+	<script src="script/test.js"></script>
+	<link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/jquery-ui.css" rel="stylesheet" type="text/css" />
+    
+    <script src="jquery-ui/external/jquery/jquery.js"></script>
+    <script src="jquery-ui/jquery-ui.js"></script>
+    
+</head>
+
+<body>
+	<div style="width:250px" >
+   <label style="float: left" >Speed</label>
+   <div id="slider" style="float: right; width: 150px"></div>
+   </br>
+   <p>Value of speed <span id="slider-value"></span></p>
+   
+   </div>
+    </br>
+    <div>
+       
+     <label for="inputGraph">Sequence States</label>
+     <textarea id="input" rows="10" cols="100" style="display: block; margin-left:5px ; font-size:15px;" onKeyUp="tryDraw();">
+         | bit1: f| pac: 0| bit2: f| list: nil| chan1: nil| chan2: nil
+         | bit1: f| pac: 0| bit2: f| list: nil| chan1: <f,0>| chan2: nil
+    </textarea>
+ </br>
+<input type="button" class="button" onclick="draw()" value="Reload" style="float:left;margin-left:5px;" />
+</div>
+       <div id="stack"  ></div>
+		
+		
+
+  
+
+</div>
+	<script type="text/javascript">
+	
+	var w = 1000;
+	var h = 1000;
+	var height = 120;
+	
+			
+	//Create SVG element
+	var svg = d3.selectAll("div#stack")
+				.append("svg")
+				.attr("id","stack")
+				.attr("width", w)
+				.attr("height", h);
+				
+	
+				
+	var stack = new Stack();
+	stack.max_item = 2;
+	
+	
+	$(document).ready(function(){
+<!--	  stack.Draw(150,315,110,height);-->
+	  
+	});	
+   
+    $( function() {
+      $("#slider").slider(
+                          {
+                          value:50,
+                          min: 0,
+                          max: 100,
+                          step: 10,
+                          slide: function( event, ui ) {
+                          $( "#slider-value" ).html( ui.value );
+                          }
+                          }
+                          );
+      
+      $( "#slider-value" ).html(  $('#slider').slider('value') );
+      
+    } );
+    
+    
+    
+     
+	function push()
+	{
+		stack.Push(height,5);		
+	}
+						
+	function pop()
+	{
+		stack.Pop(height,"top");
+	}
+
+
+</script>	
+
+	
+</html>
